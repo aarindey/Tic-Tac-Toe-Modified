@@ -1,0 +1,137 @@
+*,*::before,*::after{
+    box-sizing: border-box;
+    
+}
+body{
+    margin: 0;
+    background: url('bgp.png');
+    background-size:cover ;
+}
+header{
+    margin-top: 7%;
+}
+:root{
+    --cell-size: 100px;
+    --mark-size: calc(var(--cell-size)*0.9);
+}
+.board{
+    width: 100vw;
+    height: 60vh;
+    display: grid;
+    justify-content: center;
+    align-content: center;
+    justify-items: center;
+    align-items: center;
+    grid-template-columns: repeat(3,auto);
+}
+.cell{
+    width: var(--cell-size);
+    height: var(--cell-size);
+    background-color: rgb(5, 184, 238,0.8);
+    border: 2px solid rgba(255, 255, 255, 0.7);
+    display: flex;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.cell.x,.cell.o{
+    cursor: not-allowed;
+}
+.cell.x::before,.cell.x::after,.cell.o::after,.cell.o::before{
+    background-color: rgba(255, 255, 255, 0.7);
+}
+.board.x .cell:not(.x):not(.o):hover::before,
+.board.x .cell:not(.x):not(.o):hover::after,
+.board.o .cell:not(.x):not(.o):hover::before,
+.board.o .cell:not(.x):not(.o):hover::after{
+    background-color: rgba(255, 175, 251, 0.9);
+}
+.cell.x::before,
+.cell.x::after,
+.board.x .cell:not(.x):not(.o):hover::before,
+.board.x .cell:not(.x):not(.o):hover::after{
+   content: '';
+    width: calc(var(--mark-size)*0.12);
+    height: var(--mark-size);
+    position: absolute;
+}
+
+.cell.x::before,.board.x .cell:not(.x):not(.o):hover::before{
+    transform: rotate(45deg);
+}
+.cell.x::after,.board.x .cell:not(.x):not(.o):hover::after{
+    transform: rotate(-45deg);
+}
+.cell.o::before,
+.cell.o::after,
+.board.o .cell:not(.x):not(.o):hover::before,
+.board.o .cell:not(.x):not(.o):hover::after{
+   content: '';
+    position: absolute;
+    border-radius: 50%;
+}
+.cell.o::before,.board.o .cell:not(.x):not(.o):hover::before{
+    width: calc(var(--mark-size)*0.9);
+    height: calc(var(--mark-size)*0.9);
+}
+.cell.o::after,.board.o .cell:not(.x):not(.o):hover::after{
+    width: calc(var(--mark-size)*0.65);
+    height: calc(var(--mark-size)*0.65);
+    background-color: rgb(5, 184, 238,0.8);
+}
+.winningMessage{
+    
+    position: fixed;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+    background-color: rgb(254, 145, 202,0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 5rem;
+    flex-direction: column;
+    display: none;
+}
+.winningMessage button{
+    color: rgba(255, 255, 255);
+    font-size: 3rem;
+    background-color: rgb(5, 184, 238,0.8);
+    border: 2px solid rgba(255, 255, 255, 0.7);
+    padding: 0.25em 0.5em;
+    cursor: pointer;
+}
+.winningMessage button:hover{
+    background-color:  rgb(62, 219, 240,0.8);
+    border-color:  rgb(3, 196, 255,0.8);
+    color:  rgb(5, 184, 238);
+}
+.winningMessage.show{
+    display: flex;
+}
+header{
+   font-size:2rem;
+   display:flex;
+   justify-content:center;
+   align-content:bottom;
+   color:rgb(0, 0, 0);
+
+}
+footer{ 
+    font-size:1.5rem;
+    display:flex;
+   justify-content:center;
+   align-content:center;
+   color:rgb(0, 0, 0);
+   background-color:rgba(255, 255, 255, 0.3);
+   width: inherit;
+}
+#footer{
+    display:flex;
+   justify-content:center;
+   align-content:center;   
+}
